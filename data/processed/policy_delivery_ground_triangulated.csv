@@ -1,0 +1,61 @@
+project_id,project_name,city,latitude,longitude,length_km,sanctioned_budget_cr,actual_cost_cr,cost_overrun_cr,cost_overrun_pct,scheduled_duration_months,actual_duration_months,delay_months,contractor_experience_yrs,past_contractor_delays,num_major_junctions,reported_progress_pct,reported_status,disbursed_funds_pct,ground_defect_density,citizen_complaint_count,is_discrepancy,discrepancy_type
+PROJ-INFRA-101,Pune High-Capacity Mass Transit Road Upgradation Phase 1,Pune,18.49716,73.83569,62.4,1818.84,2398.6,579.76,31.88,23,32,9,16,2,18,31.1,In-Progress,42.6,1.05,17,1,Severe Milestone Slippage
+PROJ-INFRA-102,Krishna Mandir to Ishmeet Chowk Corridor Improvement Phase 1,Ludhiana,30.90988,75.82658,9.1,44.72,43.66,-1.06,-2.38,13,18,5,13,0,3,100.0,Completed,99.8,0.13,6,0,None
+PROJ-INFRA-103,Outer Ring Road Junction & Flyover Decongestion Scheme Phase 1,Bengaluru,12.96242,77.61017,28.6,857.05,1120.26,263.21,30.71,31,41,10,19,4,8,100.0,Completed,96.0,0.06,3,0,None
+PROJ-INFRA-104,Chandigarh-Ludhiana Highway Smart Corridor Widening Phase 1,Ludhiana,30.93083,75.78384,48.5,668.38,780.79,112.41,16.82,39,47,8,23,0,14,100.0,Completed,99.4,0.3,10,0,None
+PROJ-INFRA-105,Shivaji Nagar to Hinjewadi Arterial Road Strengthening Phase 1,Pune,18.46007,73.90069,23.9,412.04,517.9,105.86,25.69,24,31,7,14,2,7,72.4,In-Progress,68.7,0.62,9,1,Severe Milestone Slippage
+PROJ-INFRA-106,Old Delhi Heritage Corridor Pavement Rehabilitation Phase 1,Delhi,28.59795,77.20657,5.8,51.51,69.04,17.53,34.02,9,16,7,6,4,2,72.4,In-Progress,75.8,0.77,12,1,Severe Milestone Slippage
+PROJ-INFRA-107,Sardar Patel Ring Road Stormwater & Surface Overlay Phase 1,Ahmedabad,23.0507,72.58584,24.6,376.74,498.36,121.62,32.28,17,27,10,8,3,7,100.0,Completed,99.5,0.26,6,0,None
+PROJ-INFRA-108,Bandra-Kurla Complex Elevated Connector Link Road Phase 1,Mumbai,19.08784,72.88814,4.9,737.22,902.6,165.38,22.43,29,35,6,13,3,1,100.0,Completed,93.8,0.2,3,0,None
+PROJ-INFRA-109,Gill Road Industrial Area Asphalt Reconstruction Phase 1,Ludhiana,30.93371,75.81512,12.7,92.97,114.47,21.5,23.12,15,19,4,10,3,4,52.2,In-Progress,48.3,0.53,9,0,Normal Ongoing
+PROJ-INFRA-110,Katraj-Kondhwa Bypass 6-Lane Expansion Project Phase 1,Pune,18.48989,73.86345,12.8,289.96,367.51,77.55,26.75,27,29,2,18,2,4,59.2,In-Progress,61.8,0.8,13,0,Normal Ongoing
+PROJ-INFRA-111,Pune High-Capacity Mass Transit Road Upgradation Phase 2,Pune,18.45837,73.85944,78.8,2298.7,3132.96,834.26,36.29,30,40,10,6,3,23,100.0,Completed,92.3,0.26,5,0,None
+PROJ-INFRA-112,Krishna Mandir to Ishmeet Chowk Corridor Improvement Phase 2,Ludhiana,30.88802,75.84907,9.9,48.91,57.81,8.9,18.2,14,20,6,8,2,3,74.9,In-Progress,79.3,0.78,16,0,Normal Ongoing
+PROJ-INFRA-113,Outer Ring Road Junction & Flyover Decongestion Scheme Phase 2,Bengaluru,12.85642,77.56247,33.2,995.88,1518.46,522.58,52.47,36,44,8,4,7,9,100.0,Completed,98.6,2.62,41,1,Suspected Ghost Completion
+PROJ-INFRA-114,Chandigarh-Ludhiana Highway Smart Corridor Widening Phase 2,Ludhiana,30.91207,75.89039,47.1,648.73,879.49,230.76,35.57,38,44,6,17,5,13,100.0,Completed,99.8,0.19,6,0,None
+PROJ-INFRA-115,Shivaji Nagar to Hinjewadi Arterial Road Strengthening Phase 2,Pune,18.51543,73.88631,15.6,268.82,297.76,28.94,10.77,16,21,5,17,1,4,100.0,Completed,104.6,4.27,68,1,Suspected Ghost Completion
+PROJ-INFRA-116,Old Delhi Heritage Corridor Pavement Rehabilitation Phase 2,Delhi,28.62821,77.23143,7.8,69.34,83.31,13.97,20.14,13,18,5,4,3,2,84.5,In-Progress,81.9,0.77,15,0,Normal Ongoing
+PROJ-INFRA-117,Sardar Patel Ring Road Stormwater & Surface Overlay Phase 2,Ahmedabad,23.09808,72.54437,39.5,605.45,745.43,139.98,23.12,27,33,6,4,2,11,100.0,Completed,96.2,3.36,51,1,Suspected Ghost Completion
+PROJ-INFRA-118,Bandra-Kurla Complex Elevated Connector Link Road Phase 2,Mumbai,19.17156,72.95144,6.4,964.16,1058.79,94.63,9.81,37,40,3,23,1,2,72.3,In-Progress,71.0,0.86,17,0,Normal Ongoing
+PROJ-INFRA-119,Gill Road Industrial Area Asphalt Reconstruction Phase 2,Ludhiana,30.91371,75.79281,14.7,107.99,127.93,19.94,18.46,17,23,6,20,1,4,100.0,Completed,93.4,0.1,4,0,None
+PROJ-INFRA-120,Katraj-Kondhwa Bypass 6-Lane Expansion Project Phase 2,Pune,18.50917,73.83254,12.6,284.43,340.18,55.75,19.6,26,32,6,8,3,4,100.0,Completed,94.7,0.08,3,0,None
+PROJ-INFRA-121,Pune High-Capacity Mass Transit Road Upgradation Phase 3,Pune,18.52274,73.95062,77.3,2254.16,2670.85,416.69,18.49,29,33,4,22,1,22,64.9,In-Progress,60.7,0.64,12,0,Normal Ongoing
+PROJ-INFRA-122,Krishna Mandir to Ishmeet Chowk Corridor Improvement Phase 3,Ludhiana,30.86568,75.82932,6.7,33.28,47.17,13.89,41.75,10,18,8,24,6,2,75.1,In-Progress,81.2,0.49,8,1,Severe Milestone Slippage
+PROJ-INFRA-123,Outer Ring Road Junction & Flyover Decongestion Scheme Phase 3,Bengaluru,12.98588,77.56688,31.4,941.6,1117.73,176.13,18.7,34,37,3,24,0,9,100.0,Completed,98.5,0.15,6,0,None
+PROJ-INFRA-124,Chandigarh-Ludhiana Highway Smart Corridor Widening Phase 3,Ludhiana,30.94677,75.89161,38.5,531.01,707.1,176.09,33.16,31,34,3,10,3,11,100.0,Completed,101.1,2.44,38,1,Suspected Ghost Completion
+PROJ-INFRA-125,Shivaji Nagar to Hinjewadi Arterial Road Strengthening Phase 3,Pune,18.44872,73.83883,19.3,331.88,443.0,111.12,33.48,19,25,6,21,4,6,100.0,Completed,101.2,3.51,56,1,Suspected Ghost Completion
+PROJ-INFRA-126,Old Delhi Heritage Corridor Pavement Rehabilitation Phase 3,Delhi,28.61612,77.21141,7.6,67.31,84.91,17.6,26.14,12,20,8,14,3,2,83.3,In-Progress,90.0,1.05,17,1,Severe Milestone Slippage
+PROJ-INFRA-127,Sardar Patel Ring Road Stormwater & Surface Overlay Phase 3,Ahmedabad,22.99593,72.6258,31.6,484.12,518.39,34.27,7.08,22,24,2,3,0,9,100.0,Completed,104.5,4.46,67,1,Suspected Ghost Completion
+PROJ-INFRA-128,Bandra-Kurla Complex Elevated Connector Link Road Phase 3,Mumbai,19.1019,72.89914,5.8,875.73,974.05,98.32,11.23,34,38,4,23,2,2,100.0,Completed,96.6,0.31,7,0,None
+PROJ-INFRA-129,Gill Road Industrial Area Asphalt Reconstruction Phase 3,Ludhiana,30.89428,75.86871,11.9,87.13,106.45,19.32,22.17,14,17,3,18,1,3,100.0,Completed,101.0,2.67,41,1,Suspected Ghost Completion
+PROJ-INFRA-130,Katraj-Kondhwa Bypass 6-Lane Expansion Project Phase 3,Pune,18.5617,73.78429,8.1,182.69,244.92,62.23,34.07,17,25,8,18,5,2,45.3,In-Progress,43.5,0.72,11,1,Severe Milestone Slippage
+PROJ-INFRA-131,Pune High-Capacity Mass Transit Road Upgradation Phase 4,Pune,18.51549,73.88266,85.4,2490.43,3034.67,544.24,21.85,32,35,3,23,0,24,44.9,In-Progress,42.2,0.37,8,0,Normal Ongoing
+PROJ-INFRA-132,Krishna Mandir to Ishmeet Chowk Corridor Improvement Phase 4,Ludhiana,30.94714,75.8423,10.8,53.59,61.42,7.83,14.62,15,22,7,14,1,3,100.0,Completed,99.4,3.82,58,1,Suspected Ghost Completion
+PROJ-INFRA-133,Outer Ring Road Junction & Flyover Decongestion Scheme Phase 4,Bengaluru,13.00857,77.62711,21.6,648.56,735.55,86.99,13.41,23,26,3,2,0,6,71.2,In-Progress,81.7,0.83,13,0,Normal Ongoing
+PROJ-INFRA-134,Chandigarh-Ludhiana Highway Smart Corridor Widening Phase 4,Ludhiana,30.9078,75.90343,39.3,541.28,712.98,171.7,31.72,31,37,6,2,4,11,58.6,In-Progress,66.7,0.77,15,0,Normal Ongoing
+PROJ-INFRA-135,Shivaji Nagar to Hinjewadi Arterial Road Strengthening Phase 4,Pune,18.59664,73.8658,13.8,237.85,361.57,123.72,52.02,14,21,7,16,8,4,54.8,In-Progress,65.3,0.57,13,1,Severe Milestone Slippage
+PROJ-INFRA-136,Old Delhi Heritage Corridor Pavement Rehabilitation Phase 4,Delhi,28.6961,77.19623,4.8,42.76,53.79,11.03,25.79,8,11,3,7,3,1,100.0,Completed,94.8,0.36,6,0,None
+PROJ-INFRA-137,Sardar Patel Ring Road Stormwater & Surface Overlay Phase 4,Ahmedabad,22.97376,72.52499,24.8,379.52,498.59,119.07,31.37,17,27,10,6,2,7,100.0,Completed,99.2,0.1,2,0,None
+PROJ-INFRA-138,Bandra-Kurla Complex Elevated Connector Link Road Phase 4,Mumbai,19.05411,72.82858,5.0,747.85,810.96,63.11,8.44,29,32,3,23,0,1,100.0,Completed,102.7,2.3,36,1,Suspected Ghost Completion
+PROJ-INFRA-139,Gill Road Industrial Area Asphalt Reconstruction Phase 4,Ludhiana,30.86615,75.84823,12.3,90.42,103.8,13.38,14.79,14,19,5,14,0,4,31.7,In-Progress,41.4,0.62,10,0,Normal Ongoing
+PROJ-INFRA-140,Katraj-Kondhwa Bypass 6-Lane Expansion Project Phase 4,Pune,18.58132,73.87826,10.3,234.0,288.98,54.98,23.5,22,28,6,18,1,3,57.4,In-Progress,53.9,0.78,13,0,Normal Ongoing
+PROJ-INFRA-141,Pune High-Capacity Mass Transit Road Upgradation Phase 5,Pune,18.56795,73.85505,58.9,1717.22,2357.11,639.89,37.26,22,29,7,7,3,17,100.0,Completed,93.8,0.18,3,0,None
+PROJ-INFRA-142,Krishna Mandir to Ishmeet Chowk Corridor Improvement Phase 5,Ludhiana,30.93363,75.87997,10.5,51.81,61.7,9.89,19.09,15,19,4,24,1,3,100.0,Completed,99.8,0.22,7,0,None
+PROJ-INFRA-143,Outer Ring Road Junction & Flyover Decongestion Scheme Phase 5,Bengaluru,13.08295,77.53016,37.3,1117.87,1417.0,299.13,26.76,40,44,4,5,2,11,100.0,Completed,96.6,0.1,2,0,None
+PROJ-INFRA-144,Chandigarh-Ludhiana Highway Smart Corridor Widening Phase 5,Ludhiana,30.9966,75.83312,42.8,590.22,729.79,139.57,23.65,34,41,7,11,2,12,100.0,Completed,92.0,0.09,2,0,None
+PROJ-INFRA-145,Shivaji Nagar to Hinjewadi Arterial Road Strengthening Phase 5,Pune,18.55091,73.88222,22.7,390.74,511.4,120.66,30.88,23,28,5,13,3,6,32.6,In-Progress,40.9,1.05,18,0,Normal Ongoing
+PROJ-INFRA-146,Old Delhi Heritage Corridor Pavement Rehabilitation Phase 5,Delhi,28.56548,77.14446,7.0,62.16,79.04,16.88,27.16,11,17,6,5,3,2,59.7,In-Progress,62.2,0.82,13,0,Normal Ongoing
+PROJ-INFRA-147,Sardar Patel Ring Road Stormwater & Surface Overlay Phase 5,Ahmedabad,23.003,72.58755,28.4,434.83,518.78,83.95,19.31,20,25,5,8,2,8,64.1,In-Progress,68.2,1.1,18,0,Normal Ongoing
+PROJ-INFRA-148,Bandra-Kurla Complex Elevated Connector Link Road Phase 5,Mumbai,19.11078,72.93193,5.7,861.38,1210.88,349.5,40.57,33,38,5,5,5,2,100.0,Completed,93.8,0.3,6,0,None
+PROJ-INFRA-149,Gill Road Industrial Area Asphalt Reconstruction Phase 5,Ludhiana,30.93571,75.81984,11.5,84.25,94.28,10.03,11.9,13,16,3,12,2,3,80.2,In-Progress,77.6,0.39,7,0,Normal Ongoing
+PROJ-INFRA-150,Katraj-Kondhwa Bypass 6-Lane Expansion Project Phase 5,Pune,18.62195,73.87766,12.4,279.77,332.29,52.52,18.77,26,35,9,6,3,4,81.4,In-Progress,92.1,0.71,12,1,Severe Milestone Slippage
+PROJ-INFRA-151,Pune High-Capacity Mass Transit Road Upgradation Phase 6,Pune,18.52685,73.88772,60.9,1774.79,2403.76,628.97,35.44,23,29,6,21,2,17,100.0,Completed,100.2,3.1,46,1,Suspected Ghost Completion
+PROJ-INFRA-152,Krishna Mandir to Ishmeet Chowk Corridor Improvement Phase 6,Ludhiana,30.89024,75.81304,11.0,54.5,64.88,10.38,19.05,16,22,6,23,2,3,64.8,In-Progress,60.0,0.9,14,0,Normal Ongoing
+PROJ-INFRA-153,Outer Ring Road Junction & Flyover Decongestion Scheme Phase 6,Bengaluru,13.01504,77.57882,37.7,1132.42,1498.06,365.64,32.29,40,45,5,18,2,11,100.0,Completed,95.7,0.27,6,0,None
+PROJ-INFRA-154,Chandigarh-Ludhiana Highway Smart Corridor Widening Phase 6,Ludhiana,30.85658,75.92739,48.0,661.28,886.44,225.16,34.05,38,44,6,23,3,14,100.0,Completed,99.4,2.53,38,1,Suspected Ghost Completion
+PROJ-INFRA-155,Shivaji Nagar to Hinjewadi Arterial Road Strengthening Phase 6,Pune,18.58907,73.87434,15.2,261.54,329.98,68.44,26.17,15,18,3,19,3,4,48.7,In-Progress,53.4,1.1,22,0,Normal Ongoing
+PROJ-INFRA-156,Old Delhi Heritage Corridor Pavement Rehabilitation Phase 6,Delhi,28.58573,77.15266,6.2,54.66,57.88,3.22,5.89,10,17,7,24,1,2,100.0,Completed,103.4,2.72,43,1,Suspected Ghost Completion
+PROJ-INFRA-157,Sardar Patel Ring Road Stormwater & Surface Overlay Phase 6,Ahmedabad,23.10871,72.59829,31.9,487.87,654.68,166.81,34.19,22,31,9,10,4,9,100.0,Completed,103.2,2.95,45,1,Suspected Ghost Completion
+PROJ-INFRA-158,Bandra-Kurla Complex Elevated Connector Link Road Phase 6,Mumbai,19.07324,72.77457,6.0,900.69,1124.09,223.4,24.8,35,43,8,5,3,2,100.0,Completed,100.5,1.98,31,1,Suspected Ghost Completion
+PROJ-INFRA-159,Gill Road Industrial Area Asphalt Reconstruction Phase 6,Ludhiana,30.91586,75.85256,10.0,73.39,96.09,22.7,30.93,12,18,6,7,3,3,100.0,Completed,98.2,0.2,4,0,None
+PROJ-INFRA-160,Katraj-Kondhwa Bypass 6-Lane Expansion Project Phase 6,Pune,18.5012,73.94864,11.5,260.71,342.9,82.19,31.53,24,31,7,22,6,3,38.9,In-Progress,48.2,1.06,17,1,Severe Milestone Slippage

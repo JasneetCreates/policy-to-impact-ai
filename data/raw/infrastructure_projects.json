@@ -47,7 +47,7 @@
     "ground_defect_density":0.13,
     "citizen_complaint_count":6,
     "is_discrepancy":0,
-    "discrepancy_type":"None"
+    "discrepancy_type":"Verified Delivery"
   },
   {
     "project_id":"PROJ-INFRA-103",
@@ -72,7 +72,7 @@
     "ground_defect_density":0.06,
     "citizen_complaint_count":3,
     "is_discrepancy":0,
-    "discrepancy_type":"None"
+    "discrepancy_type":"Verified Delivery"
   },
   {
     "project_id":"PROJ-INFRA-104",
@@ -97,7 +97,7 @@
     "ground_defect_density":0.3,
     "citizen_complaint_count":10,
     "is_discrepancy":0,
-    "discrepancy_type":"None"
+    "discrepancy_type":"Verified Delivery"
   },
   {
     "project_id":"PROJ-INFRA-105",
@@ -172,7 +172,7 @@
     "ground_defect_density":0.26,
     "citizen_complaint_count":6,
     "is_discrepancy":0,
-    "discrepancy_type":"None"
+    "discrepancy_type":"Verified Delivery"
   },
   {
     "project_id":"PROJ-INFRA-108",
@@ -197,7 +197,7 @@
     "ground_defect_density":0.2,
     "citizen_complaint_count":3,
     "is_discrepancy":0,
-    "discrepancy_type":"None"
+    "discrepancy_type":"Verified Delivery"
   },
   {
     "project_id":"PROJ-INFRA-109",
@@ -272,7 +272,7 @@
     "ground_defect_density":0.26,
     "citizen_complaint_count":5,
     "is_discrepancy":0,
-    "discrepancy_type":"None"
+    "discrepancy_type":"Verified Delivery"
   },
   {
     "project_id":"PROJ-INFRA-112",
@@ -347,7 +347,7 @@
     "ground_defect_density":0.19,
     "citizen_complaint_count":6,
     "is_discrepancy":0,
-    "discrepancy_type":"None"
+    "discrepancy_type":"Verified Delivery"
   },
   {
     "project_id":"PROJ-INFRA-115",
@@ -472,7 +472,7 @@
     "ground_defect_density":0.1,
     "citizen_complaint_count":4,
     "is_discrepancy":0,
-    "discrepancy_type":"None"
+    "discrepancy_type":"Verified Delivery"
   },
   {
     "project_id":"PROJ-INFRA-120",
@@ -497,7 +497,7 @@
     "ground_defect_density":0.08,
     "citizen_complaint_count":3,
     "is_discrepancy":0,
-    "discrepancy_type":"None"
+    "discrepancy_type":"Verified Delivery"
   },
   {
     "project_id":"PROJ-INFRA-121",
@@ -572,7 +572,7 @@
     "ground_defect_density":0.15,
     "citizen_complaint_count":6,
     "is_discrepancy":0,
-    "discrepancy_type":"None"
+    "discrepancy_type":"Verified Delivery"
   },
   {
     "project_id":"PROJ-INFRA-124",
@@ -697,7 +697,7 @@
     "ground_defect_density":0.31,
     "citizen_complaint_count":7,
     "is_discrepancy":0,
-    "discrepancy_type":"None"
+    "discrepancy_type":"Verified Delivery"
   },
   {
     "project_id":"PROJ-INFRA-129",
@@ -897,7 +897,7 @@
     "ground_defect_density":0.36,
     "citizen_complaint_count":6,
     "is_discrepancy":0,
-    "discrepancy_type":"None"
+    "discrepancy_type":"Verified Delivery"
   },
   {
     "project_id":"PROJ-INFRA-137",
@@ -922,7 +922,7 @@
     "ground_defect_density":0.1,
     "citizen_complaint_count":2,
     "is_discrepancy":0,
-    "discrepancy_type":"None"
+    "discrepancy_type":"Verified Delivery"
   },
   {
     "project_id":"PROJ-INFRA-138",
@@ -1022,7 +1022,7 @@
     "ground_defect_density":0.18,
     "citizen_complaint_count":3,
     "is_discrepancy":0,
-    "discrepancy_type":"None"
+    "discrepancy_type":"Verified Delivery"
   },
   {
     "project_id":"PROJ-INFRA-142",
@@ -1047,7 +1047,7 @@
     "ground_defect_density":0.22,
     "citizen_complaint_count":7,
     "is_discrepancy":0,
-    "discrepancy_type":"None"
+    "discrepancy_type":"Verified Delivery"
   },
   {
     "project_id":"PROJ-INFRA-143",
@@ -1072,7 +1072,7 @@
     "ground_defect_density":0.1,
     "citizen_complaint_count":2,
     "is_discrepancy":0,
-    "discrepancy_type":"None"
+    "discrepancy_type":"Verified Delivery"
   },
   {
     "project_id":"PROJ-INFRA-144",
@@ -1097,7 +1097,7 @@
     "ground_defect_density":0.09,
     "citizen_complaint_count":2,
     "is_discrepancy":0,
-    "discrepancy_type":"None"
+    "discrepancy_type":"Verified Delivery"
   },
   {
     "project_id":"PROJ-INFRA-145",
@@ -1197,7 +1197,7 @@
     "ground_defect_density":0.3,
     "citizen_complaint_count":6,
     "is_discrepancy":0,
-    "discrepancy_type":"None"
+    "discrepancy_type":"Verified Delivery"
   },
   {
     "project_id":"PROJ-INFRA-149",
@@ -1322,7 +1322,7 @@
     "ground_defect_density":0.27,
     "citizen_complaint_count":6,
     "is_discrepancy":0,
-    "discrepancy_type":"None"
+    "discrepancy_type":"Verified Delivery"
   },
   {
     "project_id":"PROJ-INFRA-154",
@@ -1472,7 +1472,7 @@
     "ground_defect_density":0.2,
     "citizen_complaint_count":4,
     "is_discrepancy":0,
-    "discrepancy_type":"None"
+    "discrepancy_type":"Verified Delivery"
   },
   {
     "project_id":"PROJ-INFRA-160",

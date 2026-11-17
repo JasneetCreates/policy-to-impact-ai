@@ -13,10 +13,8 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 
-# Add src to path
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "src")))
 
-# Streamlit Page Config
 st.set_page_config(
     page_title="Policy-to-Impact Intelligence System",
     page_icon="🏛️",
@@ -24,7 +22,6 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Custom High-End Corporate Civic Styling
 st.markdown("""
 <style>
     .main-title {
@@ -114,15 +111,12 @@ def load_data():
 
 df_projects, df_complaints = load_data()
 
-# ---------------------------------------------------------
-# Sidebar Filters & Navigation
-# ---------------------------------------------------------
 st.sidebar.image("https://img.icons8.com/color/96/government.png", width=70)
 st.sidebar.title("Auditor Controls")
 
 selected_view = st.sidebar.radio(
     "Navigation View",
-    ["🏛️ Executive Audit Dashboard", "🗺️ GIS Infrastructure Map", "🔍 Evidence Dossier & Triangulation", "🧠 Machine Learning Laboratory (12 Algorithms)", "📄 Research Flow Paper"]
+    ["🏛️ Executive Audit Dashboard", "🗺️ GIS Infrastructure Map", "🔍 Evidence Dossier & Triangulation", "🧠 Machine Learning Laboratory", "📄 Research Flow Paper"]
 )
 
 st.sidebar.markdown("---")
@@ -140,7 +134,6 @@ budget_range = st.sidebar.slider(
     value=(float(df_projects["sanctioned_budget_cr"].min()), float(df_projects["sanctioned_budget_cr"].max()))
 )
 
-# Apply filters
 filtered_df = df_projects.copy()
 if city_filter != "All Cities":
     filtered_df = filtered_df[filtered_df["city"] == city_filter]
@@ -159,18 +152,11 @@ filtered_df = filtered_df[
     (filtered_df["sanctioned_budget_cr"] <= budget_range[1])
 ]
 
-# ---------------------------------------------------------
-# Top Header & Overview
-# ---------------------------------------------------------
 st.markdown('<div class="main-title">Policy-to-Impact Intelligence System</div>', unsafe_allow_html=True)
 st.markdown('<div class="sub-title">From Government Policy to Ground Reality: An Evidence-Driven AI Framework for Monitoring Public Infrastructure Delivery</div>', unsafe_allow_html=True)
 
 
-# ---------------------------------------------------------
-# VIEW 1: EXECUTIVE AUDIT DASHBOARD
-# ---------------------------------------------------------
 if selected_view == "🏛️ Executive Audit Dashboard":
-    # Metric KPI row
     col1, col2, col3, col4, col5 = st.columns(5)
     
     total_budget = df_projects["sanctioned_budget_cr"].sum()
@@ -192,7 +178,6 @@ if selected_view == "🏛️ Executive Audit Dashboard":
 
     st.markdown("<br>", unsafe_allow_html=True)
 
-    # Main Visual Analytics Row
     c1, c2 = st.columns([6, 4])
 
     with c1:
@@ -209,14 +194,12 @@ if selected_view == "🏛️ Executive Audit Dashboard":
         * **Verified Delivery:** Reported Progress aligns with low ground complaints (< 0.5/km).
         """)
         
-        # Pie / donut of discrepancy types
         disc_counts = df_projects["discrepancy_type"].value_counts()
         st.dataframe(disc_counts, use_container_width=True)
 
     st.markdown("---")
     st.subheader(f"📋 Monitored Infrastructure Corridors ({len(filtered_df)} projects matching filters)")
 
-    # Formatted Table
     display_df = filtered_df[[
         "project_id", "city", "project_name", "sanctioned_budget_cr", "length_km", 
         "delay_months", "reported_progress_pct", "ground_defect_density", "discrepancy_type"
@@ -228,12 +211,9 @@ if selected_view == "🏛️ Executive Audit Dashboard":
     st.dataframe(display_df, use_container_width=True, height=350)
 
 
-# ---------------------------------------------------------
-# VIEW 2: GIS INFRASTRUCTURE MAP
-# ---------------------------------------------------------
 elif selected_view == "🗺️ GIS Infrastructure Map":
-    st.subheader("🗺️ Geospatial Intelligence Map: Physical Corridors & Defect Concentrations")
-    st.markdown("Markers represent public infrastructure projects. The map is integrated with coordinate coordinates for Pune, Ludhiana, Bengaluru, Delhi, Ahmedabad, and Mumbai.")
+    st.subheader("🗺️ Geospatial Infrastructure Delivery Map: Corridors & Defect Concentrations")
+    st.markdown("Interactive corridor coordinates for Pune, Ludhiana, Bengaluru, Delhi, Ahmedabad, and Mumbai.")
 
     map_df = filtered_df[["latitude", "longitude", "project_name", "city", "discrepancy_type", "sanctioned_budget_cr"]].copy()
     st.map(map_df, latitude="latitude", longitude="longitude", size=25, color="#DC2626")
@@ -242,9 +222,6 @@ elif selected_view == "🗺️ GIS Infrastructure Map":
     st.dataframe(map_df, use_container_width=True)
 
 
-# ---------------------------------------------------------
-# VIEW 3: EVIDENCE DOSSIER & TRIANGULATION
-# ---------------------------------------------------------
 elif selected_view == "🔍 Evidence Dossier & Triangulation":
     st.subheader("🔍 Project Evidence Dossiers: Multi-Tier Verification")
     st.markdown("Click on any infrastructure project below to inspect the tripartite evidence chain (Policy Commitments vs Tender Delivery vs Citizen Grievances).")
@@ -256,7 +233,6 @@ elif selected_view == "🔍 Evidence Dossier & Triangulation":
         selected_pname = st.selectbox("Select Corridor to Audit", proj_options)
         p_row = filtered_df[filtered_df["project_name"] == selected_pname].iloc[0]
 
-        # Audit Card
         badge_style = "flag-badge-ghost" if p_row["discrepancy_type"] == "Suspected Ghost Completion" else ("flag-badge-delay" if p_row["is_discrepancy"] == 1 else "flag-badge-verified")
         
         st.markdown(f"""
@@ -281,7 +257,6 @@ elif selected_view == "🔍 Evidence Dossier & Triangulation":
 
         with colB:
             st.markdown("#### 2. Meso Delivery Record")
-            status_color = "red" if p_row["is_discrepancy"] == 1 else "green"
             st.warning(f"""
             * **Reported Status:** **{p_row['reported_status']}** ({p_row['reported_progress_pct']}% complete)
             * **Funds Disbursed:** {p_row['disbursed_funds_pct']}% of total budget
@@ -310,14 +285,13 @@ elif selected_view == "🔍 Evidence Dossier & Triangulation":
         elif p_row["discrepancy_type"] == "Severe Milestone Slippage":
             st.warning(f"""
             **ATTENTION AUDITOR:** Project has experienced a significant chronological delay (+{p_row['delay_months']} months).  
-            * **Recommended Action:** Request revised CPM/PERT milestone chart from the contractor and conduct joint survey on open junction trenches.
+            * **Recommended Action:** Request revised CPM/PERT milestone schedule from the contractor and conduct joint survey on open junction trenches.
             """)
         else:
             st.success("""
             **PORTFOLIO ON TRACK:** Reported progress matches low citizen defect signals. Recommended for standard warranty lifecycle audit.
             """)
 
-        # Related citizen complaints
         st.markdown("#### Sample Citizen Complaints Tagged to this Corridor:")
         p_complaints = df_complaints[df_complaints["project_id"] == p_row["project_id"]]
         if len(p_complaints) > 0:
@@ -326,65 +300,54 @@ elif selected_view == "🔍 Evidence Dossier & Triangulation":
             st.write("No citizen complaints logged for this corridor.")
 
 
-# ---------------------------------------------------------
-# VIEW 4: MACHINE LEARNING LABORATORY (12 ALGORITHMS)
-# ---------------------------------------------------------
-elif selected_view == "🧠 Machine Learning Laboratory (12 Algorithms)":
-    st.subheader("🧠 Machine Learning Laboratory: Interactive Model Visualizations")
-    st.markdown("Every single algorithm from the ML syllabus is implemented and interactive below:")
+elif selected_view == "🧠 Machine Learning Laboratory":
+    st.subheader("🧠 Machine Learning Laboratory: Core Predictive & Triangulation Engines")
+    st.markdown("Interactive visualizations generated from the core machine learning models:")
 
-    tab1, tab2, tab3, tab4 = st.tabs([
-        "📈 Regression & Gradient Descent (1-4)", 
-        "💬 NLP & Hotspot Clustering (5, 7, 12)", 
-        "🔢 MNIST Digit KNN (6)", 
-        "🌲 SVM, Trees & Ensembles (8-11)"
+    tab1, tab2, tab3 = st.tabs([
+        "📈 Timeline & Cost Escalation Models", 
+        "💬 Citizen Signal NLP & Hotspots", 
+        "🌲 Triangulation Discrepancy & Ensembles"
     ])
 
     with tab1:
-        st.markdown("### 1-4. Regression, Gradient Descent & Regularization Suite")
+        st.markdown("### Timeline & Cost Escalation Predictive Modeling")
         rc1, rc2 = st.columns(2)
         with rc1:
-            st.image("outputs/figures/01_gradient_descent_convergence.png", caption="Item 2: Batch vs. Stochastic vs. Mini-Batch GD Convergence")
+            st.image("outputs/figures/01_gradient_descent_convergence.png", caption="Gradient Descent Optimization Convergence (Batch vs. SGD vs. Mini-Batch)")
         with rc2:
-            st.image("outputs/figures/02_polynomial_regression_learning_curves.png", caption="Item 3: Polynomial Regression & Learning Curves (Underfitting vs. Overfitting)")
+            st.image("outputs/figures/02_polynomial_regression_learning_curves.png", caption="Cost Escalation Modeling & Learning Curves")
 
         st.markdown("---")
-        st.image("outputs/figures/03_ridge_lasso_regularization.png", caption="Item 4: Ridge (L2 Shrinkage) vs. Lasso (L1 Feature Selection to Zero)")
+        st.image("outputs/figures/03_ridge_lasso_regularization.png", caption="L1/L2 Regularization Paths & Feature Selection")
 
     with tab2:
-        st.markdown("### 5, 7, 12. Classification & Unsupervised Spatial Clustering")
+        st.markdown("### Citizen Signal Mining & Spatial Hotspot Clustering")
         nc1, nc2 = st.columns(2)
         with nc1:
-            st.image("outputs/figures/04_logistic_regression_decision_boundary.png", caption="Item 5: Logistic Regression 2D Decision Boundary")
+            st.image("outputs/figures/04_logistic_regression_decision_boundary.png", caption="Binary Discrepancy Decision Boundary")
         with nc2:
-            st.image("outputs/figures/05_naive_bayes_roc_precision_recall.png", caption="Item 7: Naïve Bayes ROC Curve & Precision-Recall Tradeoff")
+            st.image("outputs/figures/05_naive_bayes_roc_precision_recall.png", caption="Naïve Bayes ROC Curve & Precision-Recall Tradeoff")
 
         st.markdown("---")
-        st.image("outputs/figures/06_kmeans_hotspots_elbow_silhouette.png", caption="Item 12: K-Means Spatial Hotspots, Elbow Method & Silhouette Curve")
+        st.image("outputs/figures/06_kmeans_hotspots_elbow_silhouette.png", caption="K-Means Geospatial Hotspots & Silhouette Analysis")
 
     with tab3:
-        st.markdown("### 6. KNN Classification on MNIST Handwritten Digits")
-        st.image("outputs/figures/07_knn_mnist_confusion_matrix.png", caption="Item 6: KNN on MNIST: 10x10 Confusion Matrix, Accuracy vs k, and Sample Digit Predictions (98.44% Accuracy)")
-
-    with tab4:
-        st.markdown("### 8-11. Support Vector Machines, Decision Trees & Ensembles")
+        st.markdown("### Triangulation Discrepancy & Service Failure Detection")
         sc1, sc2 = st.columns(2)
         with sc1:
-            st.image("outputs/figures/08_svm_linear_poly_rbf_comparison.png", caption="Item 8: Linear vs. Polynomial vs. RBF Kernel SVM Decision Boundaries")
+            st.image("outputs/figures/08_svm_linear_poly_rbf_comparison.png", caption="Support Vector Machines: Linear vs. Polynomial vs. RBF Kernels")
         with sc2:
-            st.image("outputs/figures/09_decision_tree_cart_gini_vs_entropy.png", caption="Item 9: CART Decision Tree Visualization (Gini Impurity vs. Entropy)")
+            st.image("outputs/figures/09_decision_tree_cart_gini_vs_entropy.png", caption="CART Decision Tree Splits for Government Auditors")
 
         st.markdown("---")
         ec1, ec2 = st.columns(2)
         with ec1:
-            st.image("outputs/figures/10_random_forest_feature_importance.png", caption="Item 10: Random Forest MDI Feature Importance Ranking")
+            st.image("outputs/figures/10_random_forest_feature_importance.png", caption="Random Forest Feature Importance Ranking")
         with ec2:
-            st.image("outputs/figures/11_ensemble_models_comparison.png", caption="Item 11: Single Tree vs. Random Forest vs. Boosting Benchmark")
+            st.image("outputs/figures/11_ensemble_models_comparison.png", caption="Ensemble Classifier Performance Benchmark")
 
 
-# ---------------------------------------------------------
-# VIEW 5: RESEARCH FLOW PAPER
-# ---------------------------------------------------------
 elif selected_view == "📄 Research Flow Paper":
     st.subheader("📄 Research Flow Paper & Architecture Specification")
     paper_path = "FLOW_PAPER.md"

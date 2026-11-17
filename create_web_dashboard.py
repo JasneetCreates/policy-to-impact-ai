@@ -37,8 +37,6 @@ def generate_html_dashboard():
     <!-- Leaflet GIS Map -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <!-- Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
         body {{
@@ -76,7 +74,7 @@ def generate_html_dashboard():
             </div>
             <div class="flex items-center space-x-3">
                 <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800">
-                    <span class="w-2 h-2 mr-1.5 bg-emerald-500 rounded-full animate-pulse"></span> Live System Active
+                    <span class="w-2 h-2 mr-1.5 bg-emerald-500 rounded-full animate-pulse"></span> Active Intelligence Feed
                 </span>
                 <a href="https://github.com/JasneetCreates/policy-to-impact-ai" target="_blank" class="px-3.5 py-1.5 text-xs font-semibold rounded-lg bg-slate-900 text-white hover:bg-slate-800 transition flex items-center gap-1.5 shadow">
                     <i class="fa-brands fa-github text-sm"></i> GitHub Repo
@@ -133,7 +131,6 @@ def generate_html_dashboard():
 
         <!-- Interactive GIS Map & Priority Alert Section -->
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <!-- Map (Left 2 cols) -->
             <div class="lg:col-span-2 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
                 <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                     <div>
@@ -151,7 +148,6 @@ def generate_html_dashboard():
                 <div id="map"></div>
             </div>
 
-            <!-- Priority Audit Action List (Right 1 col) -->
             <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
                 <h3 class="text-base font-bold text-slate-900 flex items-center gap-2">
                     <i class="fa-solid fa-clipboard-check text-rose-600"></i> Priority Audit Cases
@@ -159,7 +155,6 @@ def generate_html_dashboard():
                 <p class="text-xs text-slate-500">Corridors flagged by the Triangulation Anomaly Detector for immediate human field inspection.</p>
                 
                 <div class="space-y-3 max-h-[420px] overflow-y-auto pr-1 custom-scrollbar" id="priorityList">
-                    <!-- Dynamic priority cases inserted here -->
                 </div>
             </div>
         </div>
@@ -206,129 +201,107 @@ def generate_html_dashboard():
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-slate-100 text-slate-700" id="projectTableBody">
-                        <!-- Populated by JavaScript -->
                     </tbody>
                 </table>
             </div>
         </div>
 
-        <!-- 12 Syllabus Machine Learning Laboratory Gallery -->
+        <!-- Core Machine Learning Laboratory Gallery -->
         <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-6">
             <div class="border-b border-slate-200 pb-4">
                 <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-indigo-100 text-indigo-800">
                     <i class="fa-solid fa-flask"></i> ML Evaluation Suite
                 </span>
-                <h3 class="text-xl font-bold text-slate-900 mt-2">Machine Learning Model Laboratory (12 Syllabus Algorithms)</h3>
-                <p class="text-xs text-slate-500">Interactive and high-resolution visual evidence generated from the trained Machine Learning suite.</p>
+                <h3 class="text-xl font-bold text-slate-900 mt-2">Core Machine Learning Models & Predictive Visualizations</h3>
+                <p class="text-xs text-slate-500">Empirical model outputs and evaluations powering the Policy-to-Impact Intelligence System.</p>
             </div>
 
-            <!-- Algorithm Grid (11 Visual Artifacts) -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-                <!-- 1. Gradient Descent Convergence -->
                 <div class="border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow transition bg-slate-50/50">
                     <div class="p-4 border-b border-slate-200 bg-white">
-                        <span class="text-xs font-bold text-blue-600 uppercase">Item 2 · Regression</span>
+                        <span class="text-xs font-bold text-blue-600 uppercase">Optimization Engine</span>
                         <h4 class="font-bold text-sm text-slate-900">Gradient Descent Convergence</h4>
                         <p class="text-xs text-slate-500">Batch vs Stochastic vs Mini-Batch GD</p>
                     </div>
                     <img src="outputs/figures/01_gradient_descent_convergence.png" alt="Gradient Descent Convergence" class="w-full h-52 object-contain bg-white p-2">
                 </div>
 
-                <!-- 2. Polynomial Learning Curves -->
                 <div class="border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow transition bg-slate-50/50">
                     <div class="p-4 border-b border-slate-200 bg-white">
-                        <span class="text-xs font-bold text-blue-600 uppercase">Item 3 · Non-Linearity</span>
+                        <span class="text-xs font-bold text-blue-600 uppercase">Non-Linearity Modeling</span>
                         <h4 class="font-bold text-sm text-slate-900">Polynomial Regression Fits</h4>
-                        <p class="text-xs text-slate-500">Underfitting (d=1) vs Overfitting (d=5)</p>
+                        <p class="text-xs text-slate-500">Cost Escalation Learning Curves</p>
                     </div>
                     <img src="outputs/figures/02_polynomial_regression_learning_curves.png" alt="Polynomial Regression Fits" class="w-full h-52 object-contain bg-white p-2">
                 </div>
 
-                <!-- 3. Ridge and Lasso -->
                 <div class="border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow transition bg-slate-50/50">
                     <div class="p-4 border-b border-slate-200 bg-white">
-                        <span class="text-xs font-bold text-blue-600 uppercase">Item 4 · Regularization</span>
+                        <span class="text-xs font-bold text-blue-600 uppercase">Regularization Engine</span>
                         <h4 class="font-bold text-sm text-slate-900">Ridge & Lasso Shrinkage Paths</h4>
-                        <p class="text-xs text-slate-500">Lasso Feature Selection to Exact 0</p>
+                        <p class="text-xs text-slate-500">Lasso Automatic Feature Selection</p>
                     </div>
                     <img src="outputs/figures/03_ridge_lasso_regularization.png" alt="Ridge & Lasso" class="w-full h-52 object-contain bg-white p-2">
                 </div>
 
-                <!-- 4. Logistic Decision Boundary -->
                 <div class="border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow transition bg-slate-50/50">
                     <div class="p-4 border-b border-slate-200 bg-white">
-                        <span class="text-xs font-bold text-indigo-600 uppercase">Item 5 · Classification</span>
+                        <span class="text-xs font-bold text-indigo-600 uppercase">Classification Engine</span>
                         <h4 class="font-bold text-sm text-slate-900">Logistic 2D Decision Boundary</h4>
                         <p class="text-xs text-slate-500">Separating Hyperplane at P(y=1)=0.5</p>
                     </div>
                     <img src="outputs/figures/04_logistic_regression_decision_boundary.png" alt="Logistic Regression" class="w-full h-52 object-contain bg-white p-2">
                 </div>
 
-                <!-- 5. Naive Bayes ROC / PR -->
                 <div class="border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow transition bg-slate-50/50">
                     <div class="p-4 border-b border-slate-200 bg-white">
-                        <span class="text-xs font-bold text-indigo-600 uppercase">Item 7 · Civic NLP</span>
+                        <span class="text-xs font-bold text-indigo-600 uppercase">Civic Grievance NLP</span>
                         <h4 class="font-bold text-sm text-slate-900">Naïve Bayes ROC & PR Curves</h4>
                         <p class="text-xs text-slate-500">ROC-AUC 0.707 | Avg Precision 0.888</p>
                     </div>
                     <img src="outputs/figures/05_naive_bayes_roc_precision_recall.png" alt="Naive Bayes" class="w-full h-52 object-contain bg-white p-2">
                 </div>
 
-                <!-- 6. K-Means Hotspots -->
                 <div class="border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow transition bg-slate-50/50">
                     <div class="p-4 border-b border-slate-200 bg-white">
-                        <span class="text-xs font-bold text-indigo-600 uppercase">Item 12 · Unsupervised</span>
+                        <span class="text-xs font-bold text-indigo-600 uppercase">Geospatial Clustering</span>
                         <h4 class="font-bold text-sm text-slate-900">K-Means Spatial Hotspots</h4>
                         <p class="text-xs text-slate-500">Elbow Curve & Silhouette Score (k=7)</p>
                     </div>
                     <img src="outputs/figures/06_kmeans_hotspots_elbow_silhouette.png" alt="K-Means Hotspots" class="w-full h-52 object-contain bg-white p-2">
                 </div>
 
-                <!-- 7. KNN on MNIST -->
                 <div class="border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow transition bg-slate-50/50">
                     <div class="p-4 border-b border-slate-200 bg-white">
-                        <span class="text-xs font-bold text-amber-600 uppercase">Item 6 · Digit Lab</span>
-                        <h4 class="font-bold text-sm text-slate-900">KNN on MNIST (10x10 Matrix)</h4>
-                        <p class="text-xs text-slate-500">98.44% Accuracy across 10 Digits</p>
-                    </div>
-                    <img src="outputs/figures/07_knn_mnist_confusion_matrix.png" alt="KNN on MNIST" class="w-full h-52 object-contain bg-white p-2">
-                </div>
-
-                <!-- 8. SVM Kernels -->
-                <div class="border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow transition bg-slate-50/50">
-                    <div class="p-4 border-b border-slate-200 bg-white">
-                        <span class="text-xs font-bold text-emerald-600 uppercase">Item 8 · Kernel SVM</span>
+                        <span class="text-xs font-bold text-emerald-600 uppercase">Support Vector Machine</span>
                         <h4 class="font-bold text-sm text-slate-900">Linear vs Poly vs RBF Kernels</h4>
                         <p class="text-xs text-slate-500">RBF Achieves 100% Separation</p>
                     </div>
                     <img src="outputs/figures/08_svm_linear_poly_rbf_comparison.png" alt="SVM Kernels" class="w-full h-52 object-contain bg-white p-2">
                 </div>
 
-                <!-- 9. CART Decision Tree -->
                 <div class="border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow transition bg-slate-50/50">
                     <div class="p-4 border-b border-slate-200 bg-white">
-                        <span class="text-xs font-bold text-emerald-600 uppercase">Item 9 · Decision Tree</span>
+                        <span class="text-xs font-bold text-emerald-600 uppercase">Audit Rule Tree</span>
                         <h4 class="font-bold text-sm text-slate-900">CART Tree: Gini vs Entropy</h4>
                         <p class="text-xs text-slate-500">Human-Auditable Inspection Rules</p>
                     </div>
                     <img src="outputs/figures/09_decision_tree_cart_gini_vs_entropy.png" alt="CART Decision Tree" class="w-full h-52 object-contain bg-white p-2">
                 </div>
 
-                <!-- 10. Random Forest Feature Importance -->
                 <div class="border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow transition bg-slate-50/50">
                     <div class="p-4 border-b border-slate-200 bg-white">
-                        <span class="text-xs font-bold text-emerald-600 uppercase">Item 10 · Ensembles</span>
+                        <span class="text-xs font-bold text-emerald-600 uppercase">Triangulation Model</span>
                         <h4 class="font-bold text-sm text-slate-900">Random Forest Feature Ranking</h4>
                         <p class="text-xs text-slate-500">Top Drivers: Defect Density & Complaints</p>
                     </div>
                     <img src="outputs/figures/10_random_forest_feature_importance.png" alt="Random Forest Feature Importance" class="w-full h-52 object-contain bg-white p-2">
                 </div>
 
-                <!-- 11. Boosting Benchmark -->
                 <div class="border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow transition bg-slate-50/50">
                     <div class="p-4 border-b border-slate-200 bg-white">
-                        <span class="text-xs font-bold text-emerald-600 uppercase">Item 11 · Boosting</span>
+                        <span class="text-xs font-bold text-emerald-600 uppercase">Ensemble Benchmark</span>
                         <h4 class="font-bold text-sm text-slate-900">AdaBoost & Gradient Boosting</h4>
                         <p class="text-xs text-slate-500">ROC-AUC: 0.981 vs Single Tree</p>
                     </div>
@@ -383,7 +356,6 @@ def generate_html_dashboard():
     <script>
         const projects = {projects_json};
 
-        // Initialize Leaflet Map
         const map = L.map('map').setView([20.5937, 78.9629], 5);
         L.tileLayer('https://{{s}}.basemaps.cartocdn.com/rastertiles/voyager/{{z}}/{{x}}/{{y}}{{r}}.png', {{
             attribution: '&copy; OpenStreetMap &copy; CARTO',
@@ -396,7 +368,6 @@ def generate_html_dashboard():
             const cityVal = document.getElementById('cityFilter').value;
             const statusVal = document.getElementById('statusFilter').value;
 
-            // Clear existing markers
             markers.forEach(m => map.removeLayer(m));
             markers = [];
 
@@ -415,18 +386,16 @@ def generate_html_dashboard():
             }});
 
             filtered.forEach((p, idx) => {{
-                // Determine marker color
-                let color = '#059669'; // Clean green
+                let color = '#059669';
                 let badgeClass = 'bg-emerald-100 text-emerald-800';
                 if (p.discrepancy_type === 'Suspected Ghost Completion') {{
-                    color = '#DC2626'; // Red
+                    color = '#DC2626';
                     badgeClass = 'bg-rose-100 text-rose-800';
                 }} else if (p.discrepancy_type === 'Severe Milestone Slippage') {{
-                    color = '#D97706'; // Amber
+                    color = '#D97706';
                     badgeClass = 'bg-amber-100 text-amber-800';
                 }}
 
-                // Add Circle Marker
                 const marker = L.circleMarker([p.latitude, p.longitude], {{
                     radius: 7,
                     fillColor: color,
@@ -448,7 +417,6 @@ def generate_html_dashboard():
                 `);
                 markers.push(marker);
 
-                // Add Row to Table
                 const tr = document.createElement('tr');
                 tr.className = 'hover:bg-slate-50 transition';
                 tr.innerHTML = `
@@ -466,7 +434,6 @@ def generate_html_dashboard():
                 `;
                 tbody.appendChild(tr);
 
-                // Populate Priority Cases (Top 5 Discrepancies)
                 if (p.is_discrepancy === 1 && priorityContainer.children.length < 5) {{
                     const card = document.createElement('div');
                     card.className = 'p-3 rounded-xl border border-slate-200 bg-slate-50 hover:bg-white transition cursor-pointer';
@@ -483,7 +450,6 @@ def generate_html_dashboard():
                 }}
             }});
 
-            // Adjust map view if markers exist
             if (markers.length > 0 && cityVal !== 'ALL') {{
                 const group = new L.featureGroup(markers);
                 map.fitBounds(group.getBounds().pad(0.3));
@@ -525,7 +491,6 @@ def generate_html_dashboard():
         document.getElementById('cityFilter').addEventListener('change', renderMapAndTable);
         document.getElementById('statusFilter').addEventListener('change', renderMapAndTable);
 
-        // Initial Render
         renderMapAndTable();
     </script>
 </body>

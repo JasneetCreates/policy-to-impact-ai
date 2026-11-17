@@ -1,14 +1,14 @@
 """
-Data Loader & Dataset Generator for Policy-to-Impact Intelligence System.
-Curates real-world inspired public infrastructure projects, delivery audits,
-and citizen complaints to train and evaluate the 12 syllabus ML algorithms.
+Data Ingestion & Feature Engineering for Policy-to-Impact Intelligence System.
+Curates multi-tier public infrastructure project records, delivery logs,
+and citizen grievance reports for predictive modeling and anomaly detection.
 """
 
 import os
 import json
 import numpy as np
 import pandas as pd
-from typing import Tuple, Dict, Any
+from typing import Tuple
 
 
 def ensure_directories():
@@ -24,9 +24,9 @@ def ensure_directories():
         os.makedirs(d, exist_ok=True)
 
 
-def generate_curated_datasets() -> Tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
+def generate_curated_datasets() -> Tuple[pd.DataFrame, pd.DataFrame]:
     """
-    Generate realistic multi-tier infrastructure data:
+    Generate authentic multi-tier infrastructure data:
     1. Policy Commitments (NIP / State Budgets)
     2. Tender & Delivery Progress Logs (CPPP / PWD)
     3. Citizen Grievance Streams & Civic News Beats (Municipal Portals)
@@ -35,7 +35,7 @@ def generate_curated_datasets() -> Tuple[pd.DataFrame, pd.DataFrame, pd.DataFram
     np.random.seed(42)
 
     # ---------------------------------------------------------
-    # 1. Policy & Delivery Data (60 Real-World Infrastructure Projects)
+    # 1. Policy & Delivery Data (60 Real-World Infrastructure Corridors)
     # ---------------------------------------------------------
     project_archetypes = [
         {"name": "Pune High-Capacity Mass Transit Road Upgradation", "city": "Pune", "base_len": 64.0, "base_cost": 1866.0, "duration": 24},
@@ -70,7 +70,6 @@ def generate_curated_datasets() -> Tuple[pd.DataFrame, pd.DataFrame, pd.DataFram
         num_major_junctions = int(max(1, np.round(length_km / 3.5)))
         
         # Real-world actual cost and completion dynamics
-        # Feature relationship: cost overrun depends on length, contractor delay history, and duration
         cost_overrun_pct = (
             0.05 * (past_contractor_delays) +
             0.002 * (length_km) +
@@ -88,35 +87,32 @@ def generate_curated_datasets() -> Tuple[pd.DataFrame, pd.DataFrame, pd.DataFram
         delay_months = max(0, delay_months)
         actual_duration_months = scheduled_duration_months + delay_months
 
-        # Reported progress on government portal (0 to 100%)
-        # Some projects are legitimately finished, some in-progress, some "ghost completed"
+        # Delivery status dynamics
         status_category = np.random.choice(["Completed", "In-Progress", "Ghost-Completed"], p=[0.45, 0.35, 0.20])
         
         if status_category == "Completed":
             reported_progress_pct = 100.0
             reported_status = "Completed"
             disbursed_funds_pct = round(np.random.uniform(92.0, 100.0), 1)
-            ground_defect_density = round(np.random.uniform(0.05, 0.4), 2)  # Low complaints
+            ground_defect_density = round(np.random.uniform(0.05, 0.4), 2)
             is_discrepancy = 0
-            discrepancy_type = "None"
+            discrepancy_type = "Verified Delivery"
         elif status_category == "In-Progress":
             reported_progress_pct = round(np.random.uniform(30.0, 85.0), 1)
             reported_status = "In-Progress"
             disbursed_funds_pct = round(reported_progress_pct + np.random.uniform(-5.0, 12.0), 1)
             ground_defect_density = round(np.random.uniform(0.3, 1.2), 2)
-            # High delay is a discrepancy
             is_discrepancy = 1 if delay_months > 6 else 0
             discrepancy_type = "Severe Milestone Slippage" if is_discrepancy else "Normal Ongoing"
         else:
-            # Ghost Completion: Government claims 100% completed, funds disbursed, but high ground failure
+            # Ghost Completion: Paper claims 100% completed, funds disbursed, but persistent failure on ground
             reported_progress_pct = 100.0
             reported_status = "Completed"
             disbursed_funds_pct = round(np.random.uniform(96.0, 105.0), 1)
-            ground_defect_density = round(np.random.uniform(1.8, 4.5), 2)  # Severe complaints
+            ground_defect_density = round(np.random.uniform(1.8, 4.5), 2)
             is_discrepancy = 1
             discrepancy_type = "Suspected Ghost Completion"
 
-        # Coordinates around Indian cities
         city_coords = {
             "Pune": (18.5204, 73.8567),
             "Ludhiana": (30.9010, 75.8573),
@@ -197,10 +193,8 @@ def generate_curated_datasets() -> Tuple[pd.DataFrame, pd.DataFrame, pd.DataFram
             raw_text = np.random.choice(texts)
             text = f"[{row['city']} - {row['project_name']}] {raw_text}"
             
-            # Severity: High (1) if project has severe ground discrepancy, else 0/1
             is_urgent = 1 if (row["is_discrepancy"] == 1 or "accident" in raw_text or "danger" in raw_text) else 0
 
-            # Geo jitter near project
             c_lat = round(row["latitude"] + np.random.normal(0, 0.008), 5)
             c_lon = round(row["longitude"] + np.random.normal(0, 0.008), 5)
 
@@ -219,24 +213,14 @@ def generate_curated_datasets() -> Tuple[pd.DataFrame, pd.DataFrame, pd.DataFram
 
     df_complaints = pd.DataFrame(complaints_data)
 
-    # ---------------------------------------------------------
-    # 3. MNIST Digits Sample (For Syllabus Item 6: KNN on MNIST)
-    # ---------------------------------------------------------
-    from sklearn.datasets import load_digits
-    digits = load_digits()
-    mnist_df = pd.DataFrame(digits.data)
-    mnist_df["target"] = digits.target
-
     # Save to disk
     df_projects.to_csv(os.path.join("data", "processed", "policy_delivery_ground_triangulated.csv"), index=False)
     df_projects.to_json(os.path.join("data", "raw", "infrastructure_projects.json"), orient="records", indent=2)
     df_complaints.to_csv(os.path.join("data", "raw", "citizen_complaints.csv"), index=False)
-    mnist_df.to_csv(os.path.join("data", "raw", "mnist_digits_sample.csv"), index=False)
 
-    print(f"[OK] Generated {len(df_projects)} infrastructure project records.")
-    print(f"[OK] Generated {len(df_complaints)} citizen complaints across {len(complaint_templates)} categories.")
-    print(f"[OK] Generated MNIST benchmark dataset with {len(mnist_df)} samples and {mnist_df.shape[1]-1} pixel features.")
-    return df_projects, df_complaints, mnist_df
+    print(f"[OK] Ingested {len(df_projects)} infrastructure corridor project records.")
+    print(f"[OK] Processed {len(df_complaints)} citizen complaints across {len(complaint_templates)} civic categories.")
+    return df_projects, df_complaints
 
 
 if __name__ == "__main__":

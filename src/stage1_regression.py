@@ -1,10 +1,8 @@
 """
-Stage 1: Regression Suite (Syllabus Items 1, 2, 3, 4)
-------------------------------------------------------
-1. Linear Regression with performance metrics (R2, MSE, RMSE, MAE).
-2. Batch, Stochastic, and Mini-Batch Gradient Descent convergence comparison.
-3. Polynomial Regression with Learning Curves (Underfitting vs Overfitting analysis).
-4. Ridge (L2) and Lasso (L1) Regularization analysis.
+Module 1: Timeline & Cost Escalation Predictive Modeling
+---------------------------------------------------------
+Predicts public infrastructure delays and cost escalations using multi-variable
+linear regression, gradient descent optimization, and L1/L2 regularization.
 """
 
 import os
@@ -29,7 +27,6 @@ def load_regression_data():
         generate_curated_datasets()
     df = pd.read_csv(data_path)
     
-    # Features predicting project delay in months
     features = [
         "sanctioned_budget_cr",
         "length_km",
@@ -42,9 +39,6 @@ def load_regression_data():
     return X, y, df
 
 
-# --------------------------------------------------------------------------
-# Item 1: Linear Regression & Model Performance Evaluation
-# --------------------------------------------------------------------------
 def evaluate_linear_regression(X, y):
     """Train Ordinary Least Squares Linear Regression and report metrics."""
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=42)
@@ -63,16 +57,15 @@ def evaluate_linear_regression(X, y):
     mae = mean_absolute_error(y_test, y_pred)
 
     print("\n=======================================================")
-    print("1. LINEAR REGRESSION PERFORMANCE METRICS")
+    print("1. INFRASTRUCTURE DELAY PREDICTION PERFORMANCE")
     print("=======================================================")
-    print(f"R-squared (R2) Score : {r2:.4f}")
-    print(f"Mean Squared Error (MSE) : {mse:.4f}")
-    print(f"Root Mean Squared Error (RMSE) : {rmse:.4f}")
-    print(f"Mean Absolute Error (MAE) : {mae:.4f}")
+    print(f"R-squared (R2) Score           : {r2:.4f}")
+    print(f"Mean Squared Error (MSE)       : {mse:.4f}")
+    print(f"Root Mean Squared Error (RMSE) : {rmse:.4f} months")
+    print(f"Mean Absolute Error (MAE)      : {mae:.4f} months")
     print("Learned Feature Coefficients:")
     for feat, coef in zip(X.columns, model.coef_):
         print(f"  - {feat:26s}: {coef:+.4f}")
-    print(f"  - Intercept                 : {model.intercept_:+.4f}")
     
     return {
         "model": model,
@@ -80,23 +73,17 @@ def evaluate_linear_regression(X, y):
         "r2": r2,
         "mse": mse,
         "rmse": rmse,
-        "mae": mae,
-        "y_test": y_test,
-        "y_pred": y_pred
+        "mae": mae
     }
 
 
-# --------------------------------------------------------------------------
-# Item 2: Batch, Stochastic, and Mini-Batch Gradient Descent Comparison
-# --------------------------------------------------------------------------
 def compare_gradient_descent(X, y, n_epochs=100, lr=0.01):
     """
     Implement Batch, Stochastic, and Mini-Batch Gradient Descent
-    and plot MSE loss vs Epochs to compare convergence.
+    and plot MSE loss vs Epochs to evaluate optimization convergence.
     """
     scaler = StandardScaler()
     X_scaled = scaler.fit_transform(X)
-    # Add bias term (column of 1s)
     X_b = np.c_[np.ones((X_scaled.shape[0], 1)), X_scaled]
     y_vec = y.values.reshape(-1, 1)
     m, n = X_b.shape
@@ -121,7 +108,6 @@ def compare_gradient_descent(X, y, n_epochs=100, lr=0.01):
             xi = X_b[i:i+1]
             yi = y_vec[i:i+1]
             gradients = 2 * xi.T.dot(xi.dot(theta_sgd) - yi)
-            # Decaying learning rate
             eta = lr / (1 + 0.005 * (epoch * m + i))
             theta_sgd -= eta * gradients
         loss = np.mean((X_b.dot(theta_sgd) - y_vec) ** 2)
@@ -145,20 +131,19 @@ def compare_gradient_descent(X, y, n_epochs=100, lr=0.01):
         mbgd_loss.append(loss)
 
     print("\n=======================================================")
-    print("2. GRADIENT DESCENT CONVERGENCE COMPARISON")
+    print("2. GRADIENT DESCENT OPTIMIZATION CONVERGENCE")
     print("=======================================================")
-    print(f"Final Batch GD Loss       : {bgd_loss[-1]:.4f} (Smooth, monotonic convergence)")
-    print(f"Final Stochastic GD Loss  : {sgd_loss[-1]:.4f} (Rapid early drop, mild oscillation)")
-    print(f"Final Mini-Batch GD Loss  : {mbgd_loss[-1]:.4f} (Optimal balance of speed & stability)")
+    print(f"Final Batch GD Loss       : {bgd_loss[-1]:.4f}")
+    print(f"Final Stochastic GD Loss  : {sgd_loss[-1]:.4f}")
+    print(f"Final Mini-Batch GD Loss  : {mbgd_loss[-1]:.4f}")
 
-    # Plot convergence
     os.makedirs(os.path.join("outputs", "figures"), exist_ok=True)
     plt.figure(figsize=(9, 5))
     plt.plot(bgd_loss, label="Batch Gradient Descent", color="navy", linewidth=2)
     plt.plot(sgd_loss, label="Stochastic Gradient Descent (SGD)", color="coral", alpha=0.85, linewidth=1.5)
     plt.plot(mbgd_loss, label="Mini-Batch Gradient Descent (Batch size=8)", color="forestgreen", linestyle="--", linewidth=2)
-    plt.title("Convergence Comparison: Batch vs. Stochastic vs. Mini-Batch Gradient Descent", fontsize=12, fontweight="bold")
-    plt.xlabel("Epochs", fontsize=11)
+    plt.title("Convergence Comparison: Optimization on Public Project Records", fontsize=12, fontweight="bold")
+    plt.xlabel("Training Epochs", fontsize=11)
     plt.ylabel("Mean Squared Error (MSE Loss)", fontsize=11)
     plt.legend(fontsize=10)
     plt.grid(True, linestyle=":", alpha=0.6)
@@ -166,20 +151,14 @@ def compare_gradient_descent(X, y, n_epochs=100, lr=0.01):
     plot_path = os.path.join("outputs", "figures", "01_gradient_descent_convergence.png")
     plt.savefig(plot_path, dpi=200)
     plt.close()
-    print(f"-> Saved convergence plot to: {plot_path}")
-
     return bgd_loss, sgd_loss, mbgd_loss
 
 
-# --------------------------------------------------------------------------
-# Item 3: Polynomial Regression & Learning Curves (Underfitting vs Overfitting)
-# --------------------------------------------------------------------------
 def analyze_polynomial_and_learning_curves(df):
     """
     Fit Polynomial regression of degrees 1, 2, and 5 to analyze non-linear
-    relationships and plot learning curves to evaluate underfitting vs overfitting.
+    relationships and plot learning curves to evaluate generalization error.
     """
-    # 1D feature for intuitive visualization: Sanctioned Budget vs Actual Cost
     X_single = df[["sanctioned_budget_cr"]].values
     y_cost = df["actual_cost_cr"].values
 
@@ -187,8 +166,6 @@ def analyze_polynomial_and_learning_curves(df):
     models = {}
 
     fig, axes = plt.subplots(1, 2, figsize=(14, 5))
-
-    # Left Plot: Polynomial Fit comparisons
     X_plot = np.linspace(X_single.min(), X_single.max(), 200).reshape(-1, 1)
     axes[0].scatter(X_single, y_cost, color="dimgray", alpha=0.7, edgecolors="k", label="Actual Project Data")
 
@@ -199,24 +176,15 @@ def analyze_polynomial_and_learning_curves(df):
         poly_pipeline.fit(X_single, y_cost)
         y_fit = poly_pipeline.predict(X_plot)
         r2 = r2_score(y_cost, poly_pipeline.predict(X_single))
-        label_text = f"Degree {deg} (R² = {r2:.3f})"
-        if deg == 1:
-            label_text += " [Underfitting]"
-        elif deg == 2:
-            label_text += " [Optimal Fit]"
-        elif deg == 5:
-            label_text += " [Overfitting Risk]"
-        axes[0].plot(X_plot, y_fit, color=color, linestyle=style, linewidth=2, label=label_text)
+        axes[0].plot(X_plot, y_fit, color=color, linestyle=style, linewidth=2, label=f"Degree {deg} (R² = {r2:.3f})")
         models[deg] = poly_pipeline
 
-    axes[0].set_title("Polynomial Regression Fits", fontsize=11, fontweight="bold")
+    axes[0].set_title("Cost Escalation Polynomial Fits", fontsize=11, fontweight="bold")
     axes[0].set_xlabel("Sanctioned Budget (₹ Crore)", fontsize=10)
     axes[0].set_ylabel("Actual Cost (₹ Crore)", fontsize=10)
     axes[0].legend(fontsize=9)
     axes[0].grid(True, linestyle=":", alpha=0.6)
 
-    # Right Plot: Learning Curves for Degree 1 vs Degree 2 vs Degree 5
-    # Let's show Learning Curve for Degree 1 vs Degree 2
     poly_model = make_pipeline(PolynomialFeatures(degree=2), LinearRegression())
     train_sizes, train_scores, val_scores = learning_curve(
         poly_model, X_single, y_cost, cv=5, scoring="neg_mean_squared_error",
@@ -238,24 +206,13 @@ def analyze_polynomial_and_learning_curves(df):
     plot_path = os.path.join("outputs", "figures", "02_polynomial_regression_learning_curves.png")
     plt.savefig(plot_path, dpi=200)
     plt.close()
-
-    print("\n=======================================================")
-    print("3. POLYNOMIAL REGRESSION & LEARNING CURVE ANALYSIS")
-    print("=======================================================")
-    print("Degree 1 (Linear)    : Underfits non-linear cost escalations.")
-    print("Degree 2 (Quadratic) : Captures compounding infrastructure overhead without excessive variance.")
-    print("Degree 5 (High Deg)  : High variance, risks memorizing outliers.")
-    print(f"-> Saved polynomial & learning curves plot to: {plot_path}")
     return models
 
 
-# --------------------------------------------------------------------------
-# Item 4: Ridge (L2) and Lasso (L1) Regularization
-# --------------------------------------------------------------------------
 def analyze_ridge_and_lasso(X, y):
     """
-    Fit Ridge and Lasso across various alphas and analyze coefficient shrinkage
-    and feature selection effect.
+    Fit Ridge (L2) and Lasso (L1) regularization across various alphas and analyze
+    coefficient shrinkage and automatic feature selection.
     """
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=42)
     scaler = StandardScaler()
@@ -280,21 +237,19 @@ def analyze_ridge_and_lasso(X, y):
 
     fig, axes = plt.subplots(1, 2, figsize=(14, 5))
 
-    # Ridge path
     for i, col in enumerate(X.columns):
         axes[0].plot(alphas, ridge_coefs[:, i], label=col, linewidth=1.8)
     axes[0].set_xscale("log")
-    axes[0].set_title("Ridge (L2) Regularization Path: Coefficient Shrinkage", fontsize=11, fontweight="bold")
+    axes[0].set_title("Ridge (L2) Shrinkage Path", fontsize=11, fontweight="bold")
     axes[0].set_xlabel("Alpha (Regularization Strength)", fontsize=10)
     axes[0].set_ylabel("Learned Coefficients", fontsize=10)
     axes[0].grid(True, linestyle=":", alpha=0.6)
     axes[0].legend(fontsize=8, loc="upper right")
 
-    # Lasso path
     for i, col in enumerate(X.columns):
         axes[1].plot(alphas, lasso_coefs[:, i], label=col, linewidth=1.8)
     axes[1].set_xscale("log")
-    axes[1].set_title("Lasso (L1) Regularization Path: Feature Selection to Zero", fontsize=11, fontweight="bold")
+    axes[1].set_title("Lasso (L1) Feature Selection to Zero", fontsize=11, fontweight="bold")
     axes[1].set_xlabel("Alpha (Regularization Strength)", fontsize=10)
     axes[1].set_ylabel("Learned Coefficients", fontsize=10)
     axes[1].grid(True, linestyle=":", alpha=0.6)
@@ -305,7 +260,6 @@ def analyze_ridge_and_lasso(X, y):
     plt.savefig(plot_path, dpi=200)
     plt.close()
 
-    # Optimal alpha test
     best_ridge = Ridge(alpha=1.0).fit(X_train_scaled, y_train)
     best_lasso = Lasso(alpha=0.1).fit(X_train_scaled, y_train)
 
@@ -313,27 +267,21 @@ def analyze_ridge_and_lasso(X, y):
     rmse_lasso = np.sqrt(mean_squared_error(y_test, best_lasso.predict(X_test_scaled)))
 
     print("\n=======================================================")
-    print("4. RIDGE & LASSO REGULARIZATION EFFECT")
+    print("3. REGULARIZATION & FEATURE SELECTION")
     print("=======================================================")
-    print(f"Ridge (alpha=1.0) Test RMSE : {rmse_ridge:.4f} (Shrinks coefficients smoothly towards 0)")
-    print(f"Lasso (alpha=0.1) Test RMSE : {rmse_lasso:.4f} (Drives irrelevant features exactly to 0)")
-    print("Lasso Sparsity (Feature selection):")
-    for feat, coef in zip(X.columns, best_lasso.coef_):
-        status = "Active" if abs(coef) > 1e-4 else "Eliminated (Zero)"
-        print(f"  - {feat:26s}: {coef:+.4f} [{status}]")
-    print(f"-> Saved Ridge & Lasso regularization path plot to: {plot_path}")
-
+    print(f"Ridge (alpha=1.0) Test RMSE : {rmse_ridge:.4f} months")
+    print(f"Lasso (alpha=0.1) Test RMSE : {rmse_lasso:.4f} months")
     return best_ridge, best_lasso
 
 
 def run_all_regression_experiments():
-    """Run all 4 syllabus regression experiments."""
+    """Run all timeline and cost escalation experiments."""
     X, y, df = load_regression_data()
-    eval_res = evaluate_linear_regression(X, y)
-    bgd, sgd, mbgd = compare_gradient_descent(X, y, n_epochs=120, lr=0.01)
-    poly_models = analyze_polynomial_and_learning_curves(df)
-    r_model, l_model = analyze_ridge_and_lasso(X, y)
-    print("\n[SUCCESS] Stage 1 Regression Suite fully executed and verified.")
+    evaluate_linear_regression(X, y)
+    compare_gradient_descent(X, y, n_epochs=120, lr=0.01)
+    analyze_polynomial_and_learning_curves(df)
+    analyze_ridge_and_lasso(X, y)
+    print("[SUCCESS] Module 1 Timeline & Cost Escalation Modeling verified.")
 
 
 if __name__ == "__main__":

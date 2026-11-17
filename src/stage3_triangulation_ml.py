@@ -1,10 +1,9 @@
 """
-Stage 4: Advanced Classifiers & Ensembles (Syllabus Items 8, 9, 10, 11)
-------------------------------------------------------------------------
-8. Linear and Non-linear SVM using Polynomial and RBF kernels.
-9. Decision Tree using CART algorithm: Gini Impurity vs Entropy comparison and tree visualization.
-10. Random Forest classifier: Performance evaluation and Feature Importance ranking.
-11. Boosting technique (AdaBoost & Gradient Boosting): Model performance comparison.
+Module 3: Multi-Source Triangulation & Discrepancy Detection Engine
+---------------------------------------------------------------------
+Classifies infrastructure projects into verified vs. anomalous failure states
+(Ghost Completions, Milestone Slippages) using Support Vector Machines,
+interpretable CART Decision Trees, Random Forest, and Gradient Boosting.
 """
 
 import os
@@ -24,9 +23,7 @@ from sklearn.metrics import (
     precision_score,
     recall_score,
     f1_score,
-    roc_auc_score,
-    confusion_matrix,
-    classification_report
+    roc_auc_score
 )
 
 
@@ -55,9 +52,6 @@ def load_triangulated_features():
     return X, y, df, feature_cols
 
 
-# --------------------------------------------------------------------------
-# Item 8: Linear and Nonlinear SVM (Polynomial & RBF Kernels)
-# --------------------------------------------------------------------------
 def evaluate_svm_kernels(df):
     """
     Train Linear, Polynomial, and RBF kernel SVMs on two primary indicators:
@@ -75,9 +69,9 @@ def evaluate_svm_kernels(df):
     )
 
     kernels = [
-        ("Linear SVM", SVC(kernel="linear", C=1.0, probability=True, random_state=42)),
-        ("Polynomial Kernel (d=3)", SVC(kernel="poly", degree=3, C=1.0, probability=True, random_state=42)),
-        ("RBF Kernel (Gaussian)", SVC(kernel="rbf", C=1.0, gamma="scale", probability=True, random_state=42))
+        ("Linear SVM", SVC(kernel="linear", C=1.0, random_state=42)),
+        ("Polynomial Kernel (d=3)", SVC(kernel="poly", degree=3, C=1.0, random_state=42)),
+        ("RBF Kernel (Gaussian)", SVC(kernel="rbf", C=1.0, gamma="scale", random_state=42))
     ]
 
     fig, axes = plt.subplots(1, 3, figsize=(18, 5))
@@ -86,7 +80,7 @@ def evaluate_svm_kernels(df):
     xx, yy = np.meshgrid(np.linspace(x_min, x_max, 200), np.linspace(y_min, y_max, 200))
 
     print("\n=======================================================")
-    print("8. SUPPORT VECTOR MACHINES: LINEAR VS NONLINEAR KERNELS")
+    print("SUPPORT VECTOR MACHINES: KERNEL GEOMETRY COMPARISON")
     print("=======================================================")
 
     results = {}
@@ -95,16 +89,14 @@ def evaluate_svm_kernels(df):
         y_pred = clf.predict(X_test)
         acc = accuracy_score(y_test, y_pred)
         n_sv = len(clf.support_)
-        results[name] = {"accuracy": acc, "n_support_vectors": n_sv, "model": clf}
+        results[name] = {"accuracy": acc, "n_support_vectors": n_sv}
 
         print(f"{name:25s} -> Accuracy: {acc*100:.2f}% | Support Vectors: {n_sv}")
 
-        # Decision boundary plot
         Z = clf.predict(np.c_[xx.ravel(), yy.ravel()]).reshape(xx.shape)
         axes[idx].contourf(xx, yy, Z, alpha=0.3, cmap="coolwarm")
         axes[idx].contour(xx, yy, Z, levels=[0.5], colors="black", linewidths=2)
 
-        # Plot training points & support vectors
         axes[idx].scatter(
             X_scaled[:, 0], X_scaled[:, 1], c=y, cmap="coolwarm", edgecolors="k", s=40, alpha=0.8
         )
@@ -127,14 +119,9 @@ def evaluate_svm_kernels(df):
     plot_path = os.path.join("outputs", "figures", "08_svm_linear_poly_rbf_comparison.png")
     plt.savefig(plot_path, dpi=200)
     plt.close()
-    print(f"-> Saved SVM kernels comparison plot to: {plot_path}")
-
     return results
 
 
-# --------------------------------------------------------------------------
-# Item 9: Decision Tree (CART) - Gini Impurity vs Entropy Comparison
-# --------------------------------------------------------------------------
 def evaluate_decision_tree(X, y, feature_names):
     """
     Train CART Decision Tree using both Gini Impurity and Entropy (Information Gain),
@@ -155,12 +142,11 @@ def evaluate_decision_tree(X, y, feature_names):
     acc_entropy = accuracy_score(y_test, tree_entropy.predict(X_test))
 
     print("\n=======================================================")
-    print("9. DECISION TREE (CART): GINI IMPURITY VS ENTROPY")
+    print("DECISION TREE (CART): GINI IMPURITY VS ENTROPY")
     print("=======================================================")
-    print(f"Gini Impurity Tree Accuracy  : {acc_gini * 100:.2f}% (Tree depth: {tree_gini.get_depth()}, Leaves: {tree_gini.get_n_leaves()})")
-    print(f"Entropy Tree Accuracy        : {acc_entropy * 100:.2f}% (Tree depth: {tree_entropy.get_depth()}, Leaves: {tree_entropy.get_n_leaves()})")
+    print(f"Gini Impurity Tree Accuracy  : {acc_gini * 100:.2f}%")
+    print(f"Entropy Tree Accuracy        : {acc_entropy * 100:.2f}%")
 
-    # Plot both trees side by side
     fig, axes = plt.subplots(1, 2, figsize=(18, 7))
 
     plot_tree(
@@ -189,14 +175,9 @@ def evaluate_decision_tree(X, y, feature_names):
     plot_path = os.path.join("outputs", "figures", "09_decision_tree_cart_gini_vs_entropy.png")
     plt.savefig(plot_path, dpi=200)
     plt.close()
-    print(f"-> Saved Decision Tree Gini vs Entropy visualization to: {plot_path}")
-
     return tree_gini, tree_entropy
 
 
-# --------------------------------------------------------------------------
-# Item 10: Random Forest & Feature Importance
-# --------------------------------------------------------------------------
 def evaluate_random_forest(X, y, feature_names):
     """
     Train Random Forest ensemble and evaluate Out-Of-Bag score, accuracy,
@@ -220,35 +201,26 @@ def evaluate_random_forest(X, y, feature_names):
     sorted_importances = importances[indices]
 
     print("\n=======================================================")
-    print("10. RANDOM FOREST & FEATURE IMPORTANCE RANKING")
+    print("RANDOM FOREST & FEATURE IMPORTANCE RANKING")
     print("=======================================================")
     print(f"Random Forest Test Accuracy : {acc * 100:.2f}%")
     print(f"Out-of-Bag (OOB) Score      : {oob * 100:.2f}%")
-    print("\nFeature Importance Ranking (Mean Decrease in Impurity):")
-    for feat, imp in zip(sorted_features, sorted_importances):
-        print(f"  - {feat:26s}: {imp * 100:.2f}%")
 
-    # Plot Horizontal Bar Chart
     plt.figure(figsize=(10, 5))
     y_pos = np.arange(len(sorted_features))
     plt.barh(y_pos, sorted_importances[::-1] * 100, color="teal", edgecolor="black", alpha=0.85)
     plt.yticks(y_pos, sorted_features[::-1], fontsize=9)
     plt.xlabel("Feature Importance (%)", fontsize=10)
-    plt.title("Random Forest: Top Mathematical Drivers of Infrastructure Discrepancies", fontsize=11, fontweight="bold")
+    plt.title("Random Forest: Top Empirical Drivers of Public Infrastructure Discrepancies", fontsize=11, fontweight="bold")
     plt.grid(axis="x", linestyle=":", alpha=0.6)
 
     plot_path = os.path.join("outputs", "figures", "10_random_forest_feature_importance.png")
     plt.tight_layout()
     plt.savefig(plot_path, dpi=200)
     plt.close()
-    print(f"-> Saved Random Forest Feature Importance plot to: {plot_path}")
-
     return rf, sorted_features, sorted_importances
 
 
-# --------------------------------------------------------------------------
-# Item 11: Boosting Technique & Ensemble Model Comparison
-# --------------------------------------------------------------------------
 def evaluate_boosting_and_comparison(X, y, feature_names):
     """
     Train AdaBoost and Gradient Boosting classifiers and benchmark performance
@@ -269,7 +241,7 @@ def evaluate_boosting_and_comparison(X, y, feature_names):
     metrics = []
 
     print("\n=======================================================")
-    print("11. BOOSTING & ENSEMBLE PERFORMANCE BENCHMARK")
+    print("ENSEMBLE CLASSIFIER BENCHMARK")
     print("=======================================================")
 
     for name, model in models.items():
@@ -295,7 +267,6 @@ def evaluate_boosting_and_comparison(X, y, feature_names):
 
     df_metrics = pd.DataFrame(metrics)
 
-    # Plot Comparative Bar Chart
     plt.figure(figsize=(11, 5))
     x = np.arange(len(df_metrics))
     width = 0.18
@@ -307,7 +278,7 @@ def evaluate_boosting_and_comparison(X, y, feature_names):
 
     plt.xticks(x, df_metrics["Model"], fontsize=9, fontweight="bold")
     plt.ylabel("Score (%)", fontsize=10)
-    plt.title("Comparative Performance: Single Tree vs. Bagging (RF) vs. Boosting (AdaBoost & Gradient Boosting)", fontsize=11, fontweight="bold")
+    plt.title("Comparative Performance: Decision Trees vs. Random Forest vs. Boosting", fontsize=11, fontweight="bold")
     plt.ylim(0, 115)
     plt.legend(loc="upper right", fontsize=9)
     plt.grid(axis="y", linestyle=":", alpha=0.6)
@@ -316,19 +287,17 @@ def evaluate_boosting_and_comparison(X, y, feature_names):
     plt.tight_layout()
     plt.savefig(plot_path, dpi=200)
     plt.close()
-    print(f"-> Saved Ensemble models comparison plot to: {plot_path}")
-
     return df_metrics
 
 
 def run_all_advanced_ml_experiments():
-    """Run all Step 5 experiments."""
+    """Run all triangulation and ensemble discrepancy experiments."""
     X, y, df, feature_names = load_triangulated_features()
-    svm_res = evaluate_svm_kernels(df)
-    tree_g, tree_e = evaluate_decision_tree(X, y, feature_names)
-    rf, feats, imps = evaluate_random_forest(X, y, feature_names)
-    df_metrics = evaluate_boosting_and_comparison(X, y, feature_names)
-    print("\n[SUCCESS] Stage 4 Advanced Classifiers & Ensembles fully executed and verified.")
+    evaluate_svm_kernels(df)
+    evaluate_decision_tree(X, y, feature_names)
+    evaluate_random_forest(X, y, feature_names)
+    evaluate_boosting_and_comparison(X, y, feature_names)
+    print("[SUCCESS] Module 3 Triangulation & Discrepancy Detection Engine verified.")
 
 
 if __name__ == "__main__":

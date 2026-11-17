@@ -5,19 +5,10 @@ Policy-to-Impact Intelligence System: Master Execution Pipeline
 From Government Policy to Ground Reality: An Evidence-Driven AI Framework
 for Monitoring Public Infrastructure Delivery and Detecting Emerging Service Failures.
 
-Runs all 12 Machine Learning syllabus algorithms end-to-end:
-1. Linear Regression
-2. Batch, Stochastic, and Mini-Batch Gradient Descent
-3. Polynomial Regression & Learning Curves
-4. Ridge and Lasso Regularization
-5. Logistic Regression & Decision Boundaries
-6. KNN Classification on MNIST
-7. Naive Bayes with ROC & Precision-Recall curves
-8. Linear and Non-Linear SVM (Polynomial & RBF kernels)
-9. CART Decision Tree (Gini Impurity vs. Entropy)
-10. Random Forest & Feature Importance
-11. Boosting (AdaBoost & Gradient Boosting)
-12. K-Means Spatial Hotspot Clustering
+Orchestrates the essential machine learning pipeline:
+1. Timeline & Cost Escalation Modeling (Regularized Regression & Gradient Descent)
+2. Citizen Signal Mining & Spatial Hotspot Clustering (NLP & K-Means)
+3. Triangulation Discrepancy & Service Failure Detection (SVM, CART, Random Forest, Boosting)
 =============================================================================
 """
 
@@ -25,13 +16,11 @@ import os
 import sys
 import time
 
-# Ensure src is in sys.path
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "src")))
 
 from data_loader import generate_curated_datasets
 from stage1_regression import run_all_regression_experiments
 from stage2_citizen_nlp import run_all_classification_clustering_experiments
-from mnist_knn_benchmark import evaluate_knn_on_mnist
 from stage3_triangulation_ml import run_all_advanced_ml_experiments
 
 
@@ -60,7 +49,7 @@ def generate_final_intelligence_dossier():
     print("=" * 80)
 
     discrepancies = df[df["is_discrepancy"] == 1].copy()
-    print(f"Total Monitored Projects : {len(df)}")
+    print(f"Total Monitored Corridors   : {len(df)}")
     print(f"Total Discrepancies Flagged : {len(discrepancies)} ({len(discrepancies)/len(df)*100:.1f}% of portfolio)")
     print("-" * 80)
 
@@ -96,26 +85,23 @@ def main():
     start_time = time.time()
     print_banner()
 
-    print("\n[PHASE 1] Initializing and Verifying Multi-Tier Datasets...")
+    print("\n[STAGE 1] Ingesting and Triangulating Multi-Tier Infrastructure Data...")
     generate_curated_datasets()
 
-    print("\n[PHASE 2] Executing Regression Suite (Syllabus Items 1, 2, 3, 4)...")
+    print("\n[STAGE 2] Executing Timeline & Cost Escalation Predictive Modeling...")
     run_all_regression_experiments()
 
-    print("\n[PHASE 3] Executing Classification & Clustering Suite (Syllabus Items 5, 7, 12)...")
+    print("\n[STAGE 3] Executing Citizen Signal NLP & Geospatial Hotspot Clustering...")
     run_all_classification_clustering_experiments()
 
-    print("\n[PHASE 4] Executing MNIST Digit KNN Classification Benchmark (Syllabus Item 6)...")
-    evaluate_knn_on_mnist()
-
-    print("\n[PHASE 5] Executing Advanced Classifiers & Ensembles (Syllabus Items 8, 9, 10, 11)...")
+    print("\n[STAGE 4] Executing Multi-Source Triangulation & Discrepancy Detection...")
     run_all_advanced_ml_experiments()
 
     generate_final_intelligence_dossier()
     list_generated_figures()
 
     elapsed = time.time() - start_time
-    print(f"\n[DONE] Complete Policy-to-Impact ML Pipeline executed successfully in {elapsed:.2f} seconds.\n")
+    print(f"\n[DONE] Policy-to-Impact Intelligence System executed successfully in {elapsed:.2f} seconds.\n")
 
 
 if __name__ == "__main__":

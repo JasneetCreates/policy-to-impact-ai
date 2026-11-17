@@ -52,11 +52,11 @@ The **Policy-to-Impact Intelligence System** bridges this divide. It is an evide
 
 ---
 
-## 3. Syllabus Machine Learning Algorithms Covered
+## 3.  Machine Learning Algorithms Covered
 
 The system implements and benchmarks the following **12 foundational Machine Learning algorithms**:
 
-| # | Syllabus Algorithm | System Component & Role | Primary Evaluation Metric / Output |
+| # | s Algorithm | System Component & Role | Primary Evaluation Metric / Output |
 | :-: | :--- | :--- | :--- |
 | **1** | **Linear Regression** | Predict project completion delay (months) from budget, length, junctions, and contractor track record. | $R^2$, MSE (`4.7686`), RMSE (`2.1837m`), MAE (`1.7609m`). |
 | **2** | **Batch, Stochastic (SGD) & Mini-Batch Gradient Descent** | Optimization convergence analysis comparing full batch vs. single sample vs. mini-batch updates. | Epoch vs. MSE loss convergence curves on infrastructure dataset. |
